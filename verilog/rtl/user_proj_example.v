@@ -53,104 +53,201 @@ module user_proj_example #(
     input [31:0] wbs_dat_i,
     input [31:0] wbs_adr_i,
     output wbs_ack_o,
-    output [31:0] wbs_dat_o,
-
-    // Logic Analyzer Signals
-    input  [127:0] la_data_in,
-    output [127:0] la_data_out,
-    input  [127:0] la_oenb,
-
-    // IOs
-    input  [BITS-1:0] io_in,
-    output [BITS-1:0] io_out,
-    output [BITS-1:0] io_oeb,
-
-    // IRQ
-    output [2:0] irq
+    output [31:0] wbs_dat_o
 );
-    wire clk;
-    wire rst;
-
-    wire [BITS-1:0] rdata; 
-    wire [BITS-1:0] wdata;
-    wire [BITS-1:0] count;
-
-    wire valid;
-    wire [3:0] wstrb;
-    wire [BITS-1:0] la_write;
-
-    // WB MI A
-    assign valid = wbs_cyc_i && wbs_stb_i; 
-    assign wstrb = wbs_sel_i & {4{wbs_we_i}};
-    assign wbs_dat_o = {{(32-BITS){1'b0}}, rdata};
-    assign wdata = wbs_dat_i[BITS-1:0];
-
-    // IO
-    assign io_out = count;
-    assign io_oeb = {(BITS){rst}};
-
-    // IRQ
-    assign irq = 3'b000;	// Unused
-
-    // LA
-    assign la_data_out = {{(128-BITS){1'b0}}, count};
-    // Assuming LA probes [63:32] are for controlling the count register  
-    assign la_write = ~la_oenb[63:64-BITS] & ~{BITS{valid}};
-    // Assuming LA probes [65:64] are for controlling the count clk & reset  
-    assign clk = (~la_oenb[64]) ? la_data_in[64]: wb_clk_i;
-    assign rst = (~la_oenb[65]) ? la_data_in[65]: wb_rst_i;
-
-    counter #(
-        .BITS(BITS)
-    ) counter(
-        .clk(clk),
-        .reset(rst),
-        .ready(wbs_ack_o),
-        .valid(valid),
-        .rdata(rdata),
-        .wdata(wbs_dat_i[BITS-1:0]),
-        .wstrb(wstrb),
-        .la_write(la_write),
-        .la_input(la_data_in[63:64-BITS]),
-        .count(count)
+ 
+    RNG RNG(
+        .dat_w(wbs_dat_i),
+        .dat_r(wbs_dat_o),
+        .sel(wbs_sel_i[0]),
+        .we(wbs_we_i),
+        .cyc(wbs_cyc_i),
+        .stb(wbs_stb_i),
+        .ack(wbs_ack_o),
+        .clk(wb_clk_i),
+        .rst(wb_rst_i),
+        .adr(wbs_adr_i)
     );
 
 endmodule
 
-module counter #(
-    parameter BITS = 16
-)(
-    input clk,
-    input reset,
-    input valid,
-    input [3:0] wstrb,
-    input [BITS-1:0] wdata,
-    input [BITS-1:0] la_write,
-    input [BITS-1:0] la_input,
-    output reg ready,
-    output reg [BITS-1:0] rdata,
-    output reg [BITS-1:0] count
-);
-
-    always @(posedge clk) begin
-        if (reset) begin
-            count <= 1'b0;
-            ready <= 1'b0;
-        end else begin
-            ready <= 1'b0;
-            if (~|la_write) begin
-                count <= count + 1'b1;
-            end
-            if (valid && !ready) begin
-                ready <= 1'b1;
-                rdata <= count;
-                if (wstrb[0]) count[7:0]   <= wdata[7:0];
-                if (wstrb[1]) count[15:8]  <= wdata[15:8];
-            end else if (|la_write) begin
-                count <= la_write & la_input;
-            end
-        end
-    end
-
+module RNG(dat_w, dat_r, sel, we, cyc, stb, ack, clk, rst, adr);
+  reg \$auto$verilog_backend.cc:2097:dump_module$1  = 0;
+  (* src = "/home/james/Desktop/check.py:27" *)
+  wire [31:0] \$1 ;
+  (* src = "/home/james/Desktop/check.py:28" *)
+  wire [128:0] \$10 ;
+  (* src = "/home/james/Desktop/check.py:27" *)
+  wire [31:0] \$3 ;
+  (* src = "/home/james/Desktop/check.py:28" *)
+  wire [128:0] \$5 ;
+  (* src = "/home/james/Desktop/check.py:28" *)
+  wire [127:0] \$6 ;
+  (* src = "/home/james/Desktop/check.py:28" *)
+  wire [128:0] \$8 ;
+  (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/lib/wiring.py:227" *)
+  input ack;
+  wire ack;
+  (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/lib/wiring.py:227" *)
+  input [31:0] adr;
+  wire [31:0] adr;
+  (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/hdl/ir.py:508" *)
+  input clk;
+  wire clk;
+  (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/lib/wiring.py:227" *)
+  input cyc;
+  wire cyc;
+  (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/lib/wiring.py:227" *)
+  output [31:0] dat_r;
+  reg [31:0] dat_r;
+  (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/lib/wiring.py:227" *)
+  input [31:0] dat_w;
+  wire [31:0] dat_w;
+  (* src = "/home/james/Desktop/check.py:10" *)
+  reg [63:0] increment = 64'h14057b7ef767814f;
+  (* src = "/home/james/Desktop/check.py:10" *)
+  reg [63:0] \increment$next ;
+  (* src = "/home/james/Desktop/check.py:9" *)
+  reg [63:0] multiplier = 64'h5851f42d4c957f2d;
+  (* src = "/home/james/Desktop/check.py:9" *)
+  reg [63:0] \multiplier$next ;
+  (* src = "/home/james/Desktop/check.py:13" *)
+  wire [31:0] \output ;
+  (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/hdl/ir.py:508" *)
+  input rst;
+  wire rst;
+  (* src = "/home/james/Desktop/check.py:11" *)
+  reg [63:0] seed = 64'h123456789abcdef0;
+  (* src = "/home/james/Desktop/check.py:11" *)
+  reg [63:0] \seed$next ;
+  (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/lib/wiring.py:227" *)
+  input sel;
+  wire sel;
+  (* src = "/home/james/Desktop/check.py:12" *)
+  reg [63:0] state = 64'h0000000000000000;
+  (* src = "/home/james/Desktop/check.py:12" *)
+  reg [63:0] \state$next ;
+  (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/lib/wiring.py:227" *)
+  input stb;
+  wire stb;
+  (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/lib/wiring.py:227" *)
+  input we;
+  wire we;
+  always @(posedge clk)
+    state <= \state$next ;
+  always @(posedge clk)
+    seed <= \seed$next ;
+  always @(posedge clk)
+    multiplier <= \multiplier$next ;
+  always @(posedge clk)
+    increment <= \increment$next ;
+  assign \$3  = state[31:0] ^ (* src = "/home/james/Desktop/check.py:27" *) \$1 ;
+  assign \$6  = state * (* src = "/home/james/Desktop/check.py:28" *) multiplier;
+  assign \$8  = \$6  + (* src = "/home/james/Desktop/check.py:28" *) increment;
+  always @* begin
+    if (\$auto$verilog_backend.cc:2097:dump_module$1 ) begin end
+    \state$next  = \$10 [63:0];
+    (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/hdl/xfrm.py:503" *)
+    casez (rst)
+      1'h1:
+          \state$next  = 64'h0000000000000000;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2097:dump_module$1 ) begin end
+    dat_r = 32'd0;
+    (* src = "/home/james/Desktop/check.py:31" *)
+    casez (adr)
+      /* src = "/home/james/Desktop/check.py:32" */
+      32'd0:
+          dat_r = \output ;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2097:dump_module$1 ) begin end
+    \seed$next  = seed;
+    (* src = "/home/james/Desktop/check.py:31" *)
+    casez (adr)
+      /* src = "/home/james/Desktop/check.py:32" */
+      32'd0:
+          /* empty */;
+      /* src = "/home/james/Desktop/check.py:34" */
+      32'd1:
+          \seed$next [63:32] = dat_w;
+      /* src = "/home/james/Desktop/check.py:36" */
+      32'd2:
+          \seed$next [31:0] = dat_w;
+    endcase
+    (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/hdl/xfrm.py:503" *)
+    casez (rst)
+      1'h1:
+          \seed$next  = 64'h123456789abcdef0;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2097:dump_module$1 ) begin end
+    \multiplier$next  = multiplier;
+    (* src = "/home/james/Desktop/check.py:31" *)
+    casez (adr)
+      /* src = "/home/james/Desktop/check.py:32" */
+      32'd0:
+          /* empty */;
+      /* src = "/home/james/Desktop/check.py:34" */
+      32'd1:
+          /* empty */;
+      /* src = "/home/james/Desktop/check.py:36" */
+      32'd2:
+          /* empty */;
+      /* src = "/home/james/Desktop/check.py:38" */
+      32'd3:
+          \multiplier$next [63:32] = dat_w;
+      /* src = "/home/james/Desktop/check.py:40" */
+      32'd4:
+          \multiplier$next [31:0] = dat_w;
+    endcase
+    (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/hdl/xfrm.py:503" *)
+    casez (rst)
+      1'h1:
+          \multiplier$next  = 64'h5851f42d4c957f2d;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2097:dump_module$1 ) begin end
+    \increment$next  = increment;
+    (* src = "/home/james/Desktop/check.py:31" *)
+    casez (adr)
+      /* src = "/home/james/Desktop/check.py:32" */
+      32'd0:
+          /* empty */;
+      /* src = "/home/james/Desktop/check.py:34" */
+      32'd1:
+          /* empty */;
+      /* src = "/home/james/Desktop/check.py:36" */
+      32'd2:
+          /* empty */;
+      /* src = "/home/james/Desktop/check.py:38" */
+      32'd3:
+          /* empty */;
+      /* src = "/home/james/Desktop/check.py:40" */
+      32'd4:
+          /* empty */;
+      /* src = "/home/james/Desktop/check.py:42" */
+      32'd5:
+          \increment$next [63:32] = dat_w;
+      /* src = "/home/james/Desktop/check.py:44" */
+      32'd6:
+          \increment$next [31:0] = dat_w;
+    endcase
+    (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/hdl/xfrm.py:503" *)
+    casez (rst)
+      1'h1:
+          \increment$next  = 64'h14057b7ef767814f;
+    endcase
+  end
+  assign \$5  = \$10 ;
+  assign \output  = \$3 ;
+  assign \$1  = { 18'h00000, state[63:50] };
+  assign \$10 [128:64] = 65'h00000000000000000;
+  assign \$10 [63:0] = \$8 [63:0];
 endmodule
 `default_nettype wire
