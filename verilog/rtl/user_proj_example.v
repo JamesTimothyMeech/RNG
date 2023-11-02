@@ -55,18 +55,39 @@ module user_proj_example #(
     output wbs_ack_o,
     output [31:0] wbs_dat_o
 );
- 
+    wire [31:0] dat_w;
+    wire [31:0] dat_r;
+    wire sel;
+    wire we;
+    wire cyc;
+    wire stb;
+    wire ack;
+    wire clk;
+    wire rst;
+    wire [31:0] adr;
+    
+    assign dat_w = wbs_dat_i;
+    assign wbs_dat_o = dat_r;
+    assign sel = wbs_sel_i[0];
+    assign we = wbs_we_i;
+    assign cyc = wbs_cyc_i;
+    assign stb = wbs_stb_i;
+    assign wbs_ack_o = ack;
+    assign clk = wb_clk_i;
+    assign rst = wb_rst_i;
+    assign adr = wbs_adr_i;
+    
     RNG RNG(
-        .dat_w(wbs_dat_i),
-        .dat_r(wbs_dat_o),
-        .sel(wbs_sel_i[0]),
-        .we(wbs_we_i),
-        .cyc(wbs_cyc_i),
-        .stb(wbs_stb_i),
-        .ack(wbs_ack_o),
-        .clk(wb_clk_i),
-        .rst(wb_rst_i),
-        .adr(wbs_adr_i)
+        .dat_w(dat_w),
+        .dat_r(dat_r),
+        .sel(sel),
+        .we(we),
+        .cyc(cyc),
+        .stb(stb),
+        .ack(ack),
+        .clk(clk),
+        .rst(rst),
+        .adr(adr)
     );
 
 endmodule
