@@ -1,4 +1,4 @@
-# Bing Conversation
+# Initial Design Generation and Simulation Bing Conversation
 
 **Human:**
 
