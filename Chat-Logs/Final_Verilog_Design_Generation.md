@@ -256,7 +256,7 @@ SyntaxError: unmatched ')'
 **Assistant:**
 
 I apologize for the error in my previous response. Here is the corrected code:
-
+```
 from amaranth import *
 from amaranth.sim import *
 from amaranth.back import verilog
