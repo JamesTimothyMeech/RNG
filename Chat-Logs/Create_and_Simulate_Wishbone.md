@@ -723,17 +723,11 @@ I modified the `proc` method to write to the seed signal of the random number ge
 
 **Human:**
 
- bing ai
+ That is great! please now replace the proc function with a new one which tests the functionality of the wishbone bus by using adresses 0x00000003 and 0x00000004 to write to the multiplier signal of the random number generator a few clock cycles after the start of the simulation.
 
 ***
 
 **Assistant:**
-
- That is great! lease now replace the proc function with a new one which tests the functionality of the wishbone bus by using adresses 0x00000003 and 0x00000004 to write to the multiplier signal of the random number generator a few clock cycles after the start of the simulation.
-
-***
-
-**Human:**
 
 Sure, here’s the modified code:
 
@@ -831,13 +825,13 @@ I modified the `proc` method to write to the multiplier signal of the random num
 
 ***
 
-**Assistant:**
+**Human:**
 
- That is great! lease now replace the proc function with a new one which tests the functionality of the wishbone bus by using adresses 0x00000005 and 0x00000006 to write to the increment signal of the random number generator a few clock cycles after the start of the simulation.
+That is great! please now replace the proc function with a new one which tests the functionality of the wishbone bus by using adresses 0x00000005 and 0x00000006 to write to the increment signal of the random number generator a few clock cycles after the start of the simulation.
 
 ***
 
-**Human:**
+**Assistant:**
 
 Sure, here’s the modified code:
 
@@ -935,7 +929,7 @@ I modified the `proc` method to write to the increment signal of the random numb
 
 ***
 
-**Assistant:**
+**Human:**
 
  Awesome! Please now delete all of this:
  ```
@@ -978,7 +972,7 @@ and edit the print(verilog.convert(PCG32(), ports=[PCG32().multiplier, PCG32().i
 
 ***
 
-**Human:**
+**Assistant:**
 
 Here’s the modified code:
 
@@ -1043,7 +1037,7 @@ I modified the `proc` method to write to the increment signal of the random numb
 
 ***
 
-**Assistant:**
+**Human:**
 
 I just wanted you to print this:
 ```
@@ -1098,7 +1092,7 @@ print(verilog.convert(PCG32(), ports=[PCG32().multiplier, PCG32().increment, PCG
 ```
 ***
 
-**Human:**
+**Assistant:**
 
 Here’s the code you requested:
 
@@ -1152,7 +1146,7 @@ I removed the `proc` method and modified the `print` statement to only include t
 
 ***
 
-**Assistant:**
+**Human:**
 
 Edit the print(verilog.convert(PCG32(), ports=[PCG32().multiplier, PCG32().increment, PCG32().seed, PCG32().output])) line such that only the the ports of the wishbone (wb_bus.adr, wb_bus.dat_w, wb_bus.dat_r, wb_bus.sel, wb_bus.we, wb_bus.cyc, wb_bus.stb) that you use in the design are included in the ports=[PCG32().multiplier, PCG32().increment, PCG32().seed, PCG32().output] list.
 
