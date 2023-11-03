@@ -3,6 +3,7 @@
 **Human:**
 
  You generated this Amaranth hardware description language code for a random number generator in a previous conversation:
+```
 from amaranth import *
 from amaranth.sim import *
 from amaranth.back import verilog
@@ -44,7 +45,7 @@ if __name__ == '__main__':
 
 # Generate the hardware description language implementation
 print(verilog.convert(PCG32(), ports=[PCG32().multiplier, PCG32().increment, PCG32().seed, PCG32().output]))
-
+```
 I want to make some edits to it
 
 ***
