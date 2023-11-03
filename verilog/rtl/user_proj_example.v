@@ -263,6 +263,7 @@ module RNG(dat_w, dat_r, sel, we, cyc, stb, clk, rst, adr);
   assign \$1  = { 18'h00000, state[63:50] };
   assign \$10 [128:64] = 65'h00000000000000000;
   assign \$10 [63:0] = \$8 [63:0];
+  
 endmodule
 
 `default_nettype wire
