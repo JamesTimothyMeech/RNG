@@ -67,7 +67,8 @@ Sure, what changes would you like to make?
 **Assistant:**
 Sure, I can help you with that. Here’s the modified code:
 
-<cib-code-block code-lang="python" clipboard-data="from amaranth import *
+```
+from amaranth import *
 from amaranth.sim import *
 from amaranth.back import verilog
 from amaranth_soc import wishbone
@@ -129,7 +130,7 @@ if __name__ == '__main__':
 
 # Generate the hardware description language implementation
 print(verilog.convert(PCG32(), ports=[PCG32().multiplier, PCG32().increment, PCG32().seed, PCG32().output]))
-">```
+```
 from amaranth import *
 from amaranth.sim import *
 from amaranth.back import verilog
