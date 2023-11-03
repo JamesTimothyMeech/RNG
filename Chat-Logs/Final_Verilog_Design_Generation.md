@@ -1,4 +1,4 @@
-# Bing Conversation
+# Final Verilog Design Generation Bing Conversation
 
 **Human:**
 
