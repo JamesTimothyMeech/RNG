@@ -1,4 +1,4 @@
-# Bing Conversation
+# Create and Simulate Wishbone Bing Conversation
 
 **Human:**
 
