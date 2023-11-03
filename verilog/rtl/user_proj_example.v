@@ -52,7 +52,6 @@ module user_proj_example #(
     input [3:0] wbs_sel_i,
     input [31:0] wbs_dat_i,
     input [31:0] wbs_adr_i,
-    output wbs_ack_o,
     output [31:0] wbs_dat_o
 );
     wire [31:0] dat_w;
@@ -61,7 +60,6 @@ module user_proj_example #(
     wire we;
     wire cyc;
     wire stb;
-    wire ack;
     wire clk;
     wire rst;
     wire [31:0] adr;
@@ -72,7 +70,6 @@ module user_proj_example #(
     assign we = wbs_we_i;
     assign cyc = wbs_cyc_i;
     assign stb = wbs_stb_i;
-    assign wbs_ack_o = ack;
     assign clk = wb_clk_i;
     assign rst = wb_rst_i;
     assign adr = wbs_adr_i;
@@ -84,7 +81,6 @@ module user_proj_example #(
         .we(we),
         .cyc(cyc),
         .stb(stb),
-        .ack(ack),
         .clk(clk),
         .rst(rst),
         .adr(adr)
@@ -92,7 +88,7 @@ module user_proj_example #(
 
 endmodule
 
-module RNG(dat_w, dat_r, sel, we, cyc, stb, ack, clk, rst, adr);
+module RNG(dat_w, dat_r, sel, we, cyc, stb, clk, rst, adr);
   reg \$auto$verilog_backend.cc:2097:dump_module$1  = 0;
   (* src = "/home/james/Desktop/check.py:27" *)
   wire [31:0] \$1 ;
@@ -106,9 +102,6 @@ module RNG(dat_w, dat_r, sel, we, cyc, stb, ack, clk, rst, adr);
   wire [127:0] \$6 ;
   (* src = "/home/james/Desktop/check.py:28" *)
   wire [128:0] \$8 ;
-  (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/lib/wiring.py:227" *)
-  input ack;
-  wire ack;
   (* src = "/home/james/.local/lib/python3.10/site-packages/amaranth/lib/wiring.py:227" *)
   input [31:0] adr;
   wire [31:0] adr;
@@ -271,4 +264,5 @@ module RNG(dat_w, dat_r, sel, we, cyc, stb, ack, clk, rst, adr);
   assign \$10 [128:64] = 65'h00000000000000000;
   assign \$10 [63:0] = \$8 [63:0];
 endmodule
+
 `default_nettype wire
