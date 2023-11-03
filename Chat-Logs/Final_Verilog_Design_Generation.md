@@ -119,7 +119,7 @@ class PCG32(Elaboratable):
 **Assistant:**
 
 Here is the Verilog code for the design ports of the Wishbone bus interface:
-
+```
 from amaranth import *
 from amaranth.sim import *
 from amaranth.back import verilog
