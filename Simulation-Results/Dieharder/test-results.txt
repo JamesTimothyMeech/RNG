@@ -83,4 +83,9 @@ rgb_minimum_distance|   5|     10000|    1000|0.01172587|  PASSED
       rgb_lagged_sum|   1|   1000000|     100|0.41140966|  PASSED  
       rgb_lagged_sum|   2|   1000000|     100|0.96144486|  PASSED  
       rgb_lagged_sum|   3|   1000000|     100|0.52214526|  PASSED  
-      rgb_lagged_sum|   4|   1000000|     100|0.15475677|  PASSED 
+      rgb_lagged_sum|   4|   1000000|     100|0.15475677|  PASSED  
+      rgb_lagged_sum|   5|   1000000|     100|0.93712512|  PASSED  
+      rgb_lagged_sum|   6|   1000000|     100|0.35542011|  PASSED  
+      rgb_lagged_sum|   7|   1000000|     100|0.99451857|  PASSED  
+      rgb_lagged_sum|   8|   1000000|     100|0.03423586|  PASSED  
+      rgb_lagged_sum|   9|   1000000|     100|0.98468416|  PASSED 

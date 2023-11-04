@@ -173,7 +173,7 @@ The following connections are made:
 
 **Human:**
 
- This code runs without errors. Please ask me questions until you have enough information to edit the code in the proc function to test the functionality of the wishbone busy by putting the output of the random number generator onto the wishbone bus a few clock cycles after the simulation starts.
+ This code runs without errors. Please ask me questions until you have enough information to edit the code in the proc function to test the functionality of the wishbone bus by putting the output of the random number generator onto the wishbone bus a few clock cycles after the simulation starts.
 
 ***
 
