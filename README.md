@@ -16,7 +16,7 @@ Python script containing successfully simulated and produced verilog for a rando
 The .vcd files and screenshots of the simulation results can be found in the Simulations directory. 
 The image below shows a human drawn diagram of the final permuted congruential random number generator designed by Microsoft Bing Chat using the Amaranth hardware description language.
 The generated Verilog can be found in the Generated-Verilog directory. 
-![](https://github.com/JamesTimothyMeech/RNG/files/13773706/RNGCircuit.pdf)
+![Circuit](https://github.com/JamesTimothyMeech/RNG/files/13773706/RNGCircuit.pdf)
 
 ## Design Refinement and Simulation
 
