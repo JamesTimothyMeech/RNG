@@ -41,7 +41,7 @@ We had a conversation in the Final_Verilog_Design_Generation.md file to create t
 To meet the original deadline of the project we hurriedly deleted the ack port of the Wishbone interface because our Amaranth design did not have any logic to drive it and this caused errors when running Openlane. After the competition deadline was extended we had one last conversation with Microsoft Bing Chat to add acks to the wishbone bus. The conversation can be found in the Final_Verilog_Design_Generation_With_Acks_and_Safety_Settings.md file in the Chat-Logs folder. Microsoft Bing Chat was able to add acks to the Wishbone bus but it was only able to do this after being reminded that it had generated Amranth in the past. We attempted to get it to generate simulations to test the final design but it refused to do so even after being reminded that it had generated Amaranth in the past. We believe this is because the safety settings of Microsoft Bing Chat have been changed to make it more hesitant to generate code for the user.
 In the absence of new test simulations, we used the old proc functions and simulation code that Microsoft Bing Chat generated to test the first version of the Wishbone bus to test the new version with acks included. The results of these tests can be found in the Simulation-Results/Final+Acks directory. The Python scripts used to generate these results can be found in the Amaranth-Python-Scripts/Final+Acks directory. The image below shows a diagram of how we connected the random number generator to the Caravel wishbone using an Amaranth generated wishbone interface to program and sample from the random number generator.
 
-![Project](Project/RNGCircuit.png)
+![Project](Diagrams/RNGProject.png)
 
 ## Future Work and Project Direction
 
