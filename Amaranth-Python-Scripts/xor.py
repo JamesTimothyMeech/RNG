@@ -21,7 +21,7 @@ class PCG32(Elaboratable):
         increment = self.increment
 
         # Generate a new random number
-        m.d.comb += output.eq(state[0:32] ^ (state[32:64] >> 18))
+        m.d.comb += output.eq((state[0:32] ^ (state[32:64] >> 18)) ^ (state[0:32] ^ (state[32:64] >> 18)))
         m.d.sync += state.eq((state * multiplier + increment) & ((1 << 64) - 1))
 
         return m
